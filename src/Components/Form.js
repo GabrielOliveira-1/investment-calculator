@@ -33,7 +33,7 @@ const Form = (props) => {
       interests: enteredExpectedInterest,
       duration: enteredInvestmentDuration,
     };
-    props.onSaveInput(userInput);
+    props.onCalculateBtnPress(userInput);
 
     setEnteredSavings("");
     setEnteredYearlySavings("");

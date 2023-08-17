@@ -9,10 +9,10 @@ function App(props) {
 
     const yearlyData = []; // per-year results
 
-    let currentSavings = +userInput["current-savings"]; // We can change the shape of this input object!
-    const yearlyContribution = +userInput["yearly-contribution"]; // as mentioned: we can change the shape...
-    const expectedReturn = +userInput["expected-return"] / 100;
-    const duration = +userInput["duration"];
+    let currentSavings = +userInput.savings; // We can change the shape of this input object!
+    const yearlyContribution = +userInput.yearlySavings; // as mentioned: we can change the shape...
+    const expectedReturn = +userInput.interests / 100;
+    const duration = +userInput.duration;
 
     // The below code calculates yearly results (total savings, interest etc)
     for (let i = 0; i < duration; i++) {
@@ -28,6 +28,7 @@ function App(props) {
     }
 
     // do something with yearlyData ...
+    console.log(yearlyData);
   };
 
   return (
@@ -36,7 +37,7 @@ function App(props) {
         <img src={logo} alt="logo" />
         <h1>Investment Calculator</h1>
       </header>
-      <Form />
+      <Form onCalculateBtnPress={calculateHandler} />
       {/* Todo: Show below table conditionally (only once result data is available) */}
       {/* Show fallback text if no data is available */}
       <Table />
