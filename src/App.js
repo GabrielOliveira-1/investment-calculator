@@ -1,13 +1,18 @@
+import { useState } from "react";
 import logo from "./assets/investment-calculator-logo.png";
 import Form from "./Components/Form";
 import Table from "./Components/Table";
 
+let yearlyData = []; // per-year results
+
 function App(props) {
+  const [tableData, setTableData] = useState("");
+
   const calculateHandler = (userInput) => {
+    setTableData("");
+    yearlyData = [];
     // Should be triggered when form is submitted
     // You might not directly want to bind it to the submit event on the form though...
-
-    const yearlyData = []; // per-year results
 
     let currentSavings = +userInput.savings; // We can change the shape of this input object!
     const yearlyContribution = +userInput.yearlySavings; // as mentioned: we can change the shape...
@@ -28,6 +33,11 @@ function App(props) {
     }
 
     // do something with yearlyData ...
+
+    setTableData(yearlyData);
+
+    console.log(tableData);
+    console.log("------------");
     console.log(yearlyData);
   };
 
@@ -40,7 +50,7 @@ function App(props) {
       <Form onCalculateBtnPress={calculateHandler} />
       {/* Todo: Show below table conditionally (only once result data is available) */}
       {/* Show fallback text if no data is available */}
-      <Table />
+      <Table items={tableData} />
     </div>
   );
 }
