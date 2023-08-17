@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Form.css";
 
-const Form = () => {
+const Form = (props) => {
   const [enteredSavings, setEnteredSavings] = useState("");
   const [enteredYearlySavings, setEnteredYearlySavings] = useState("");
   const [enteredExpectedInterest, setEnteredExpectedInterest] = useState("");
@@ -26,6 +26,19 @@ const Form = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+
+    const userInput = {
+      savings: enteredSavings,
+      yearlySavings: enteredYearlySavings,
+      interests: enteredExpectedInterest,
+      duration: enteredInvestmentDuration,
+    };
+    props.onSaveInput(userInput);
+
+    setEnteredSavings("");
+    setEnteredYearlySavings("");
+    setEnteredExpectedInterest("");
+    setEnteredInvestmentDuration("");
   };
 
   return (

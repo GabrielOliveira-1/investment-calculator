@@ -2,7 +2,7 @@ import logo from "./assets/investment-calculator-logo.png";
 import Form from "./Components/Form";
 import Table from "./Components/Table";
 
-function App() {
+function App(props) {
   const calculateHandler = (userInput) => {
     // Should be triggered when form is submitted
     // You might not directly want to bind it to the submit event on the form though...
