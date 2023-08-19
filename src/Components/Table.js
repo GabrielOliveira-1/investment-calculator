@@ -16,15 +16,15 @@ const Table = (props) => {
           <th>Invested Capital</th>
         </tr>
       </thead>
-      {props.items.map((line) => (
+      {/* {props.items.map((line) => (
         <tbody>
           <td>{line.year}</td>
           <td>{line.yearlyInterest}</td>
           <td>{line.savingsEndOfYear}</td>
           <td>{line.yearlyContribution}</td>
         </tbody>
-      ))}
-      {/* <tbody>
+      ))} */}
+      <tbody>
         <tr>
           <td>YEAR NUMBER</td>
           <td>TOTAL SAVINGS END OF YEAR</td>
@@ -32,7 +32,7 @@ const Table = (props) => {
           <td>TOTAL INTEREST GAINED</td>
           <td>TOTAL INVESTED CAPITAL</td>
         </tr>
-      </tbody> */}
+      </tbody>
     </table>
   );
 };
