@@ -1,12 +1,15 @@
-import "./Table.css";
+import classes from "./Table.module.css";
+
+const formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
 
 const Table = (props) => {
-  // if (props.items.length === 0) {
-  //   return <h2 className="result">No investment input.</h2>;
-  // }
-
   return (
-    <table className="result">
+    <table className={classes.result}>
       <thead>
         <tr>
           <th>Year</th>
@@ -16,22 +19,27 @@ const Table = (props) => {
           <th>Invested Capital</th>
         </tr>
       </thead>
-      {/* {props.items.map((line) => (
-        <tbody>
-          <td>{line.year}</td>
-          <td>{line.yearlyInterest}</td>
-          <td>{line.savingsEndOfYear}</td>
-          <td>{line.yearlyContribution}</td>
-        </tbody>
-      ))} */}
       <tbody>
-        <tr>
-          <td>YEAR NUMBER</td>
-          <td>TOTAL SAVINGS END OF YEAR</td>
-          <td>INTEREST GAINED IN YEAR</td>
-          <td>TOTAL INTEREST GAINED</td>
-          <td>TOTAL INVESTED CAPITAL</td>
-        </tr>
+        {props.items.map((lineData) => (
+          <tr key={lineData.year}>
+            <td>{lineData.year}</td>
+            <td>{formatter.format(lineData.savingsEndOfYear)}</td>
+            <td>{formatter.format(lineData.yearlyInterest)}</td>
+            <td>
+              {formatter.format(
+                lineData.savingsEndOfYear -
+                  props.initialInvestment -
+                  lineData.yearlyContribution * lineData.year
+              )}
+            </td>
+            <td>
+              {formatter.format(
+                props.initialInvestment +
+                  lineData.yearlyContribution * lineData.year
+              )}
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
   );

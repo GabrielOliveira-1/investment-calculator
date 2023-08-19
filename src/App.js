@@ -3,10 +3,8 @@ import Header from "./Components/Header";
 import Form from "./Components/Form";
 import Table from "./Components/Table";
 
-// let yearlyData = []; // per-year results
-
 function App(props) {
-  // Changed to derived state, so whenever we receive an userInput, the component function will re-executethe component and the calculations code will re-execute as well
+  // Changed to derived state, so whenever we receive an userInput, the component function will re-execute the component and the calculations code will re-execute as well
   const [userInput, setUserInput] = useState(null);
 
   const calculateHandler = (userInput) => {
@@ -37,9 +35,10 @@ function App(props) {
     <div>
       <Header />
       <Form onCalculateBtnPress={calculateHandler} />
-      {/* Todo: Show below table conditionally (only once result data is available) */}
-      {/* Show fallback text if no data is available */}
-      <Table items={userInput} />
+      {!userInput && <p>No investment input</p>}
+      {userInput && (
+        <Table items={yearlyData} initialInvestment={userInput.savings} />
+      )}
     </div>
   );
 }
