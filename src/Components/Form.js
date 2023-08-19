@@ -35,6 +35,10 @@ const Form = (props) => {
     };
     props.onCalculateBtnPress(userInput);
 
+    resetHandler();
+  };
+
+  const resetHandler = () => {
     setEnteredSavings("");
     setEnteredYearlySavings("");
     setEnteredExpectedInterest("");
@@ -86,7 +90,7 @@ const Form = (props) => {
         </p>
       </div>
       <p className="actions">
-        <button type="reset" className="buttonAlt">
+        <button onClick={resetHandler} type="reset" className="buttonAlt">
           Reset
         </button>
         <button type="submit" className="button">
