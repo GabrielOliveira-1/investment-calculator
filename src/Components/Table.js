@@ -1,6 +1,10 @@
 import "./Table.css";
 
-const Table = () => {
+const Table = (props) => {
+  // if (props.items.length === 0) {
+  //   return <h2 className="result">No investment input.</h2>;
+  // }
+
   return (
     <table className="result">
       <thead>
@@ -12,7 +16,15 @@ const Table = () => {
           <th>Invested Capital</th>
         </tr>
       </thead>
-      <tbody>
+      {props.items.map((line) => (
+        <tbody>
+          <td>{line.year}</td>
+          <td>{line.yearlyInterest}</td>
+          <td>{line.savingsEndOfYear}</td>
+          <td>{line.yearlyContribution}</td>
+        </tbody>
+      ))}
+      {/* <tbody>
         <tr>
           <td>YEAR NUMBER</td>
           <td>TOTAL SAVINGS END OF YEAR</td>
@@ -20,7 +32,7 @@ const Table = () => {
           <td>TOTAL INTEREST GAINED</td>
           <td>TOTAL INVESTED CAPITAL</td>
         </tr>
-      </tbody>
+      </tbody> */}
     </table>
   );
 };

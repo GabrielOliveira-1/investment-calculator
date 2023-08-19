@@ -1,16 +1,18 @@
 import { useState } from "react";
-import logo from "./assets/investment-calculator-logo.png";
+import Header from "./Components/Header";
 import Form from "./Components/Form";
 import Table from "./Components/Table";
 
-let yearlyData = []; // per-year results
+// let yearlyData = []; // per-year results
 
 function App(props) {
-  const [tableData, setTableData] = useState("");
+  const [tableData, setTableData] = useState([]);
+
+  let yearlyData = [];
 
   const calculateHandler = (userInput) => {
-    setTableData("");
     yearlyData = [];
+    // setTableData("");
     // Should be triggered when form is submitted
     // You might not directly want to bind it to the submit event on the form though...
 
@@ -34,7 +36,9 @@ function App(props) {
 
     // do something with yearlyData ...
 
-    setTableData(yearlyData);
+    setTableData((prevTableData) => {
+      return tableData;
+    });
 
     console.log(tableData);
     console.log("------------");
@@ -43,14 +47,11 @@ function App(props) {
 
   return (
     <div>
-      <header className="header">
-        <img src={logo} alt="logo" />
-        <h1>Investment Calculator</h1>
-      </header>
+      <Header />
       <Form onCalculateBtnPress={calculateHandler} />
       {/* Todo: Show below table conditionally (only once result data is available) */}
       {/* Show fallback text if no data is available */}
-      <Table items={tableData} />
+      <Table items={yearlyData} />
     </div>
   );
 }
